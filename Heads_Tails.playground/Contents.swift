@@ -5,16 +5,39 @@ import UIKit
 var str = "Hello, playground"
 
 
-
-var flip = [
-    0: "head",
-    1: "tails"
-]
-
-var toss = Int(arc4random_uniform(UInt32()))
-
-func tossCoin(){
-    print("Tossing a Coin")
+func tossCoin() -> String {
+    let coin = Int(arc4random_uniform(UInt32(2)))
+    
+    if coin == 0 {
+        return "Heads"
+    }else {
+        return "Tails"
+    }
+   
 }
+tossCoin()
+
+
+func tossMultipleCoins(tosses:Int) -> Double{
+    
+    var headsCount = 0
+    var tailsCount = 0
+    
+    for _ in 0...tosses {
+        if tossCoin() == "Heads" {
+            headsCount += 1
+        }else {
+            tailsCount += 1
+        }
+    }
+    
+    return Double(tosses) / Double(headsCount)
+}
+
+
+tossMultipleCoins(tosses: 10)
+
+
+
 
 
